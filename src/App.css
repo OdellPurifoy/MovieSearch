@@ -1,3 +1,9 @@
+.movieTable {
+  padding-top: 16px;
+  padding-left: 16px;
+
+}
+
 .inputBar {
   font-size: 24;
   display: block;
@@ -15,7 +21,7 @@
 }
 
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {

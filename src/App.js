@@ -1,26 +1,58 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieRow from './MovieRow.js';
+import $ from 'jquery';
 
 class App extends Component {
   constructor(props){
     super(props)
-    console.log("This is my initializer")
 
-    const movies = [
-      {id: 0, poster_src: "avenge_infinity.jpg", title: "Avengers: Infinity War", overview: "Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos."},
-      {id: 1, poster_src: "avenge.jpg", title: "The Avengers", overview: "This is my second overview"}
-    ]
+    this.state = {}
+    // console.log("This is my initializer")
 
-    var movieRows = []
-    movies.forEach((movie) => {
-      console.log(movie.title)
-      const movieRow = <MovieRow movie={movie}/>
-      movieRows.push(movieRow)
-    })
+    // const movies = [
+    //   {id: 0, poster_src: "avenge_infinity.jpg", title: "Avengers: Infinity War", overview: "Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos."},
+    //   {id: 1, poster_src: "avenge.jpg", title: "The Avengers", overview: "This is my second overview"}
+    // ]
+    //
+    // var movieRows = []
+    // movies.forEach((movie) => {
+    //   console.log(movie.title)
+    //   const movieRow = <MovieRow movie={movie}/>
+    //   movieRows.push(movieRow)
+    // })
+    //
+    // this.state = {rows: movieRows}
 
-    this.state = {rows: movieRows}
+    this.performSearch()
   }
+
+    performSearch(){
+      const urlString = "https://api.themoviedb.org/3/search/movie?query=marvel&api_key=df3d5b9a95500bcab8c291885b160bdc"
+      console.log("Perform search using moviedb")
+      $.ajax({
+        url: urlString,
+        success: (searchResults) =>  {
+          console.log("Data successfully fetched")
+          // console.log(searchResults)
+          const results = searchResults.results
+          // console.log(results[0])
+
+          var movieRows = []
+
+          results.forEach((movie) => {
+            console.log(movie.title)
+            const movieRow = <MovieRow movie={movie}/>
+            movieRows.push(movieRow)
+          })
+
+          this.setState({rows: movieRows})
+        },
+        error: (xhr, status, err) => {
+          console.error("Failed to fetch data")
+        }
+      })
+    }
 
   render() {
     return (

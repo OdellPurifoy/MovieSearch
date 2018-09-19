@@ -8,21 +8,6 @@ class App extends Component {
     super(props)
 
     this.state = {}
-    // console.log("This is my initializer")
-
-    // const movies = [
-    //   {id: 0, poster_src: "avenge_infinity.jpg", title: "Avengers: Infinity War", overview: "Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos."},
-    //   {id: 1, poster_src: "avenge.jpg", title: "The Avengers", overview: "This is my second overview"}
-    // ]
-    //
-    // var movieRows = []
-    // movies.forEach((movie) => {
-    //   console.log(movie.title)
-    //   const movieRow = <MovieRow movie={movie}/>
-    //   movieRows.push(movieRow)
-    // })
-    //
-    // this.state = {rows: movieRows}
 
     this.performSearch("avengers")
   }
